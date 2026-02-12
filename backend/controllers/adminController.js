@@ -15,6 +15,7 @@ exports.initializeAdmin = async () => {
       
       await admin.save();
       console.log('✅ Superadmin account created');
+      console.log(`📧 Email: ${process.env.ADMIN_EMAIL}`);
     }
   } catch (error) {
     console.error('❌ Error creating admin:', error);
@@ -26,7 +27,14 @@ exports.adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     
-    const admin = await Admin.findOne({ email });
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email and password are required'
+      });
+    }
+
+    const admin = await Admin.findOne({ email: email.toLowerCase() });
     
     if (!admin) {
       return res.status(401).json({
@@ -51,7 +59,7 @@ exports.adminLogin = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { id: admin._id, email: admin.email, role: admin.role },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET || 'fallback-secret-do-not-use-in-production',
       { expiresIn: '24h' }
     );
 
@@ -67,10 +75,11 @@ exports.adminLogin = async (req, res) => {
       }
     });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({
       success: false,
       message: 'Error logging in',
-      error: error.message
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
@@ -105,7 +114,14 @@ exports.createAdmin = async (req, res) => {
   try {
     const { email, password, role } = req.body;
     
-    const adminExists = await Admin.findOne({ email });
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email and password are required'
+      });
+    }
+
+    const adminExists = await Admin.findOne({ email: email.toLowerCase() });
     
     if (adminExists) {
       return res.status(400).json({
@@ -115,7 +131,7 @@ exports.createAdmin = async (req, res) => {
     }
 
     const admin = new Admin({
-      email,
+      email: email.toLowerCase(),
       password,
       role: role || 'admin'
     });
