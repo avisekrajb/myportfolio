@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-app",
+  "version": "1.0.0",
+  "description": "Full Stack Portfolio Application",
+  "main": "backend/server.js",
+  "scripts": {
+    "install": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "prod": "NODE_ENV=production node backend/server.js"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
+  "keywords": ["portfolio", "react", "node", "mongodb"],
+  "author": "Abhishek Rajbanshi",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7c6fff" />
+    <meta name="description" content="Abhishek Rajbanshi - Portfolio | B.Tech CSE Student | Full-Stack Developer" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <title>Abhishek Rajbanshi | Portfolio</title>
+    
+    <style>
+      /* Original CSS from prompt */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #070714;
+        --bg2: #0e0e22;
+        --surface: #13132e;
+        --card: #1a1a38;
+        --border: rgba(255,255,255,0.08);
+        --text: #e8e8ff;
+        --muted: #6868a0;
+        --a1: #7c6fff; --a2: #ff6b9d; --a3: #00d4aa; --a4: #ffb547;
+        --shadow: rgba(0,0,0,0.5);
+      }
+      .light-mode {
+        --bg: #f4f4fb;
+        --bg2: #eaeaf7;
+        --surface: #ffffff;
+        --card: #ffffff;
+        --border: rgba(0,0,0,0.08);
+        --text: #0f0f2d;
+        --muted: #7070a0;
+        --shadow: rgba(100,100,200,0.15);
+      }
+      html { scroll-behavior: smooth; }
+      body { 
+        background: var(--bg); 
+        color: var(--text); 
+        font-family: 'Outfit', sans-serif; 
+        overflow-x: hidden; 
+        transition: background 0.4s, color 0.4s; 
+      }
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: var(--bg); }
+      ::-webkit-scrollbar-thumb { background: var(--a1); border-radius: 4px; }
+
+      @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+      @keyframes pulseRing { 0%,100%{box-shadow:0 0 0 0 rgba(124,111,255,.5)} 70%{box-shadow:0 0 0 10px rgba(124,111,255,0)} }
+      @keyframes gradShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+      @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+      @keyframes slideUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+      @keyframes scaleIn { from{opacity:0;transform:scale(0.88)} to{opacity:1;transform:scale(1)} }
+      @keyframes rotateFull { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+      @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+      @keyframes slideInLeft { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+      @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+      .gtext {
+        background: linear-gradient(135deg,#7c6fff,#ff6b9d,#00d4aa);
+        background-size:300% 300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        background-clip:text; animation: gradShift 5s ease infinite;
+      }
+      .card {
+        background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+        transition: transform 0.35s cubic-bezier(.175,.885,.32,1.275), box-shadow 0.35s;
+      }
+      .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 24px 48px var(--shadow); }
+
+      .btn-p {
+        background: linear-gradient(135deg,var(--a1),var(--a2)); color:#fff; border:none;
+        padding:13px 28px; border-radius:50px; font-size:.9rem; font-weight:700; cursor:pointer;
+        letter-spacing:.04em; transition: all .3s; font-family:'Outfit',sans-serif; display:inline-flex; align-items:center; gap:8px;
+      }
+      .btn-p:hover { transform:translateY(-3px); box-shadow:0 14px 30px rgba(124,111,255,.4); }
+      .btn-o {
+        background:transparent; color:var(--text); border:1.5px solid var(--border);
+        padding:12px 26px; border-radius:50px; font-size:.9rem; font-weight:600; cursor:pointer;
+        transition:all .3s; font-family:'Outfit',sans-serif; display:inline-flex; align-items:center; gap:8px;
+      }
+      .btn-o:hover { border-color:var(--a1); color:var(--a1); transform:translateY(-3px); }
+
+      .navlink {
+        color:var(--muted); text-decoration:none; font-size:.85rem; font-weight:600;
+        letter-spacing:.05em; transition:color .3s; position:relative; padding:4px 0;
+      }
+      .navlink::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px;
+        background:linear-gradient(90deg,var(--a1),var(--a2)); transition:width .3s; border-radius:2px; }
+      .navlink:hover { color:var(--text); }
+      .navlink:hover::after, .navlink.act::after { width:100%; }
+      .navlink.act { color:var(--text); }
+
+      .skill-track { height:7px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden; }
+      .skill-fill { height:100%; border-radius:10px; transition:width 1.6s cubic-bezier(.65,0,.35,1); }
+
+      .tag { display:inline-flex; align-items:center; gap:5px; padding:4px 11px; border-radius:20px;
+        font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+
+      .inp {
+        width:100%; background:rgba(255,255,255,0.04);
+        border:1.5px solid var(--border); border-radius:12px; padding:13px 16px;
+        color:var(--text); font-size:.92rem; font-family:'Outfit',sans-serif;
+        transition:all .3s; outline:none; resize:none;
+      }
+      .inp:focus { border-color:var(--a1); box-shadow:0 0 0 4px rgba(124,111,255,.12); }
+      .inp::placeholder { color:var(--muted); }
+
+      .photo-ring { position:absolute; inset:-4px; border-radius:50%;
+        background:conic-gradient(from 0deg,#7c6fff,#ff6b9d,#00d4aa,#ffb547,#7c6fff);
+        animation:rotateFull 4s linear infinite; padding:3px; }
+      .photo-ring-inner { width:100%; height:100%; border-radius:50%; background:var(--bg); }
+
+      .cert-badge { position:absolute; top:-10px; right:14px;
+        background:linear-gradient(135deg,#ffb547,#ff6b9d); color:#fff;
+        font-size:.6rem; font-weight:800; padding:4px 9px; border-radius:20px; letter-spacing:.07em; text-transform:uppercase; }
+
+      @media(max-width:820px){
+        .hgrid,.agrid,.cgrid{ grid-template-columns:1fr !important; }
+        .pgrid{ grid-template-columns:1fr !important; }
+        .scols{ grid-template-columns:1fr !important; }
+        .certgrid{ grid-template-columns:1fr 1fr !important; }
+        .hnav{ display:none !important; }
+        .mbtn{ display:flex !important; }
+      }
+      @media(max-width:480px){
+        .certgrid{ grid-template-columns:1fr !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

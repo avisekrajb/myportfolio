@@ -1,0 +1,42 @@
+services:
+  # Backend API Service
+  - type: web
+    name: portfolio-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm run prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@portfolio.com
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: CORS_ORIGIN
+        fromService:
+          name: portfolio-frontend
+          type: web
+          property: url
+
+  # Frontend Static Site
+  - type: web
+    name: portfolio-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          name: portfolio-backend
+          type: web
+          property: url
+      - key: GENERATE_SOURCEMAP
+        value: false
