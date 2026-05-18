@@ -4,9 +4,9 @@ import { MapPin, Briefcase, Mail, Zap, Award, Code, Globe } from 'lucide-react';
 
 const About = ({ dark }) => {
   const infoItems = [
-    { ic: "map-pin", l: "Location", v: "Dharan, Koshi, Nepal 🇳🇵" },
+    { ic: "map-pin", l: "Location", v: "Biratnagar, Koshi, Nepal 🇳🇵" },
     { ic: "briefcase", l: "Degree", v: "B.Tech — Computer Science (3rd Year)" },
-    { ic: "mail", l: "Email", v: "abhishek.rajbanshi@email.com" },
+    { ic: "mail", l: "Email", v: "rajbanshiabhishek999@email.com" },
     { ic: "zap", l: "Status", v: "Seeking Internship / Full-time Role" },
   ];
 
@@ -14,7 +14,7 @@ const About = ({ dark }) => {
     { 
       yr: "2022–Present", 
       ti: "B.Tech Computer Science", 
-      or: "University (Dharan, Nepal)", 
+      or: "University (Biratnagar, Nepal)", 
       c: "#7c6fff", 
       ic: "briefcase" 
     },
@@ -100,7 +100,7 @@ const About = ({ dark }) => {
               lineHeight: 1.9,
               marginBottom: 20
             }}>
-              I'm <strong style={{ color: dark ? "#e8e8ff" : "#0f0f2d" }}>Abhishek Rajbanshi</strong>, a passionate 3rd-year B.Tech Computer Science student from the beautiful city of Dharan, Nepal. I love building software that solves real problems and creates meaningful impact.
+              I'm <strong style={{ color: dark ? "#e8e8ff" : "#0f0f2d" }}>Abhishek Rajbanshi</strong>, a passionate 3rd-year B.Tech Computer Science student from the beautiful city of Biratnagar, Nepal. I love building software that solves real problems and creates meaningful impact.
             </p>
             
             <p style={{
