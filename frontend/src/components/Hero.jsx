@@ -227,7 +227,7 @@ const Hero = ({ dark }) => {
             maxWidth: 460,
             marginBottom: 34
           }}>
-            Passionate B.Tech CSE student from Dharan, Nepal 🇳🇵, crafting modern web applications with clean code and creative design. Seeking internships and collaborations to grow and contribute.
+            Passionate B.Tech CSE student from Biratnagar, Nepal 🇳🇵, crafting modern web applications with clean code and creative design. Seeking internships and collaborations to grow and contribute.
           </p>
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 32 }}>
